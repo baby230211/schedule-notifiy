@@ -2,14 +2,14 @@ name: run main.py
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "00 22 * * *"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
+        uses: actions/checkout@v3 # checkout the repository content
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -25,4 +25,5 @@ jobs:
         env:
           GROUP_ID: ${{ secrets.GROUP_ID }}
           CHANNEL_TOKEN: ${{ secrets.CHANNEL_TOKEN }}
+          CUSTOM_MESSAGE: ${{ secrets.CUSTOM_MESSAGE }}
         run: python main.py
